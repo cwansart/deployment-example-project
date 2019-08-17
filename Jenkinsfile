@@ -1,3 +1,10 @@
+def mvn(cmd) {
+    configFileProvider(
+        [configFile(fileId: 'deployment-settings', variable: 'MAVEN_SETTINGS')]) {
+        sh "mvn -s $MAVEN_SETTINGS ${cmd}"
+    }
+}
+
 pipeline {
     agent any
 
@@ -8,25 +15,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                mvn 'clean compile'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                mvn 'test'
             }
         }
 
         stage('Package') {
             steps {
-                sh 'mvn package'
+                mvn 'package'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'To be done'
+                echo 'mvn deploy'
             }
         }
 
