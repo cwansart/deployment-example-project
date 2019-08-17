@@ -18,6 +18,13 @@
         <finalName>deployment-example-project</finalName>
     </build>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>http://nexus:8081/repository/ok-public/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
