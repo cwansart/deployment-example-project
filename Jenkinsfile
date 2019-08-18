@@ -5,6 +5,8 @@ def mvn(cmd) {
     }
 }
 
+def dockerImage
+
 pipeline {
     agent any
 
@@ -39,13 +41,21 @@ pipeline {
 
         stage('Create Docker image') {
             steps {
-                echo 'To be done'
+                echo 'Created docker image'
+                /*script {
+                    dockerImage = docker.build("deployment-example-project:${env.BUILD_ID}")
+                }*/
             }
         }
 
         stage('Push Docker image') {
             steps {
-                echo 'To be done'
+                script {
+                    echo 'Pushed docker image'
+                    /*docker.withRegistry('http://nexus:9999', 'docker-publisher') {
+                        dockerImage.push()
+                    }*/
+                }
             }
         }
     }
